@@ -15,6 +15,7 @@ jobs:
     steps:
     - run: |
         export VERSION=${GITHUB_REF##*/}
+        export VERSION=$(echo $VERSION | sed -e 's/^v//'
         echo "RELEASE_VERSION=$VERSION" >> $GITHUB_ENV
         export CURRENT_DATE=$(date --iso-8601=seconds)
         echo "RELEASE_DATE=$CURRENT_DATE" >> $GITHUB_ENV
