@@ -1,4 +1,4 @@
-# kubernetes-hello-app
+# kubernetes-hello-secret 🕵🏻‍♂️
 
 Slight variation of [GCP Hello App](https://github.com/GoogleCloudPlatform/kubernetes-engine-samples/tree/master/hello-app).
 
