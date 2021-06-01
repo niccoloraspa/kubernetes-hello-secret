@@ -1,0 +1,27 @@
+name: "Release"
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  release:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Build and push
+      uses: docker/build-push-action@v2
+      with:
+        file: ./Dockerfile
+        context: .
+        platforms: linux/amd64
+        pull: true
+        no-cache: true
+        push: true
+        tags: |
+          ghcr.io/${{ github.repository }}:${{ env.RELEASE_VERSION }}
+          ghcr.io/${{ github.repository }}:latest
+        build-args: |
+          RELEASE_DATE=${{ env.RELEASE_DATE }}
+          VERSION=${{ env.RELEASE_VERSION }}
+          COMMIT=${{ github.sha }}
