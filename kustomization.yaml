@@ -9,3 +9,4 @@ resources:
   - manifests/hello-app.yaml
   - manifests/hello-svc.yaml
   - manifests/hello-ingress.yaml
+  - manifests/secrets/hello-secret.yaml
