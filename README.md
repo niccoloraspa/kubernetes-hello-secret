@@ -54,14 +54,20 @@ The source code is available at [/docker/main.go](./docker/main.go)
 
 ### Deployment
 
-1. Build the manifests and apply:
+1. Deploy the secret:
+
+```bash
+kubectl create secret generic -n hello hello-secret --from-literal=secret=1234
+```
+
+2. Build the application manifests and apply:
 
 ```bash
 cd manifest
 kustomize build . | kubectl apply -f -
 ```
 
-2. Verify that the ingress controller is directing traffic:
+3. Verify that the ingress controller is directing traffic:
 
 ```bash
 curl -H "Host: hello-secret.info" $(minikube ip)
