@@ -64,13 +64,20 @@ kubectl create secret generic -n hello hello-secret --from-literal=secret=1234
 
 ```bash
 cd manifest
-kustomize build . | kubectl apply -f -
+kustomize build manifests/ | kubectl apply -f -
 ```
 
 3. Verify that the ingress controller is directing traffic:
 
 ```bash
 curl -H "Host: hello-secret.info" $(minikube ip)
+```
+
+Output:
+
+```bash
+Hello, secret!
+Secret: 1234
 ```
 
 ## References
