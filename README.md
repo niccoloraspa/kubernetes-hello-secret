@@ -2,7 +2,7 @@
 
 Slight variation of the [sample Hello App][hello-app-repository].
 
-It deploys an `hello-app` deployment in the `hello` namespace that mounts a `hello-secrets` secret value on the `SECRET` environment variable.
+It creates an `hello-app` deployment in the `hello` namespace that consume a `hello-secrets` secret value mounting it on the `SECRET` environment variable.
 
 ```yaml
 apiVersion: apps/v1
@@ -44,13 +44,15 @@ Hello, secret!
 Secret: <VALUE>
 ```
 
-The source code is available [here](./docker/main.go)
+The source code is available at [/docker/main.go](./docker/main.go)
 
-## Tools
+## Deploy Hello Secret App
+
+### Prerequisites
 
 - kustomize `>= 3.6`
 
-## Deploy the app
+### Deployment
 
 1. Build the manifests and apply:
 
@@ -70,4 +72,3 @@ curl -H "Host: hello-secret.info" $(minikube ip)
 - [Hello App repository][hello-app-repository]
 
 [hello-app-repository]: https://github.com/GoogleCloudPlatform/kubernetes-engine-samples/tree/master/hello-app
-
