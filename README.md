@@ -1,36 +1,28 @@
 # kubernetes-hello-secret 🕵🏻‍♂️
 
-Slight variation of [GCP Hello App](https://github.com/GoogleCloudPlatform/kubernetes-engine-samples/tree/master/hello-app).
+Slight variation of [Hello App][hello-app-repository].
 
 ## Tools
 
 - kustomize `>= 3.6`
 
-## Create the app
+## Deploy the app
 
-- Create resources:
+1. Build the manifests and apply:
 
 ```bash
+cd manifest
 kustomize build . | kubectl apply -f -
 ```
 
-- Add the following line to the bottom of the `/etc/hosts` file:
+2. Verify that the ingress controller is directing traffic:
 
 ```bash
-<MINIKUBE_IP> hello-secret.info
+curl -H "Host: hello-secret.info" $(minikube ip)
 ```
 
-Where `<MINIKUBE_IP>` must be replace with output of `minikube ip`.
+## References
 
-- Verify that the Ingress controller is directing traffic:
+- [Hello App repository][hello-app-repository]
 
-```bash
-curl hello-secret.info
-```
-
-
-## Credits
-
-- https://github.com/GoogleCloudPlatform/kubernetes-engine-samples/tree/master/hello-app
-
-- https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/
+[hello-app-repository]: https://github.com/GoogleCloudPlatform/kubernetes-engine-samples/tree/master/hello-app
