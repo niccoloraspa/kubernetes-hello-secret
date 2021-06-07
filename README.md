@@ -44,7 +44,7 @@ Hello, secret!
 Secret: <VALUE>
 ```
 
-The source code is available [here](./main.go)
+The source code is available [here](./docker/main.go)
 
 ## Tools
 
@@ -59,7 +59,6 @@ cd manifest
 kustomize build . | kubectl apply -f -
 ```
 
-<<<<<<< HEAD
 2. Verify that the ingress controller is directing traffic:
 
 ```bash
@@ -71,9 +70,4 @@ curl -H "Host: hello-secret.info" $(minikube ip)
 - [Hello App repository][hello-app-repository]
 
 [hello-app-repository]: https://github.com/GoogleCloudPlatform/kubernetes-engine-samples/tree/master/hello-app
-=======
-## Credits
 
-- https://github.com/GoogleCloudPlatform/kubernetes-engine-samples/tree/master/hello-app
-- https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/
->>>>>>> 929e067 (Move Dockerfile to docker folder)
