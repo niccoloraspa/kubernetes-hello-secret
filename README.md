@@ -1,6 +1,50 @@
 # kubernetes-hello-secret 🕵🏻‍♂️
 
-Slight variation of [Hello App][hello-app-repository].
+Slight variation of the [sample Hello App][hello-app-repository]. 
+
+It deploys an `hello-app` deployment in the `hello` namespace that mounts a `hello-secrets` secret value on the `SECRET` environment variable.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-app
+  namespace: hello
+  labels:
+    app: hello
+spec:
+  selector:
+    matchLabels:
+      app: hello
+  template:
+    metadata:
+      labels:
+        app: hello
+    spec:
+      containers:
+      - name: hello-app
+        image: ghcr.io/nikever/kubernetes-hello-secret:latest
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 20m
+        env:
+        - name: SECRET
+          valueFrom:
+            secretKeyRef:
+              name: hello-secret
+              key: secret
+```
+
+The `ghcr.io/nikever/kubernetes-hello-secret:latest` contains a containerized Go web server application that responds to all HTTP requests with the value of the `SECRET` environment variable.
+
+```bash
+Hello, secret!
+Secret: <VALUE>
+```
+
+The source code is available [here](./main.go)
 
 ## Tools
 
