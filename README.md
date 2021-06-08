@@ -10,25 +10,14 @@ kind: Deployment
 metadata:
   name: hello-app
   namespace: hello
-  labels:
-    app: hello
+  ...
 spec:
-  selector:
-    matchLabels:
-      app: hello
-  template:
-    metadata:
-      labels:
-        app: hello
+    ...
     spec:
       containers:
       - name: hello-app
         image: ghcr.io/nikever/kubernetes-hello-secret:latest
-        ports:
-        - containerPort: 8080
-        resources:
-          requests:
-            cpu: 20m
+        ...
         env:
         - name: SECRET
           valueFrom:
